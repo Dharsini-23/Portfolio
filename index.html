@@ -3,15 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dharsini | Software Engineer &amp; Java Developer</title>
+  <title>Dharsini | Web & Software Developer &amp; Java Developer</title>
   <meta name="description" content="Dharsini A. - Software Engineer, Java Developer and Full-Stack Developer based in Trichy, Tamil Nadu, India." />
-  <meta name="theme-color" content="#0a0f1f" />
+  <meta name="theme-color" content="#f7f9fc" />
   <link rel="icon" type="image/png" href="Dharsini.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (error) {
+      // Private browsing modes may block localStorage; light mode remains the default.
+    }
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -42,6 +51,8 @@
   <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
   <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8z"/></symbol>
 </svg>
 
 <a class="skip-link" href="#home">Skip to content</a>
@@ -51,25 +62,31 @@
 <header class="nav" id="navbar">
   <div class="container nav__inner">
     <a href="#home" class="nav__brand" aria-label="Dharsini A. - back to top">
-      <span class="nav__mark">D</span>
       <span class="nav__name">Protfolio</span>
     </a>
     <nav aria-label="Primary">
       <ul class="nav__links" id="navLinks">
-        <li><a href="#home" class="nav__link">Home</a></li>
-        <li><a href="#about" class="nav__link">About</a></li>
-        <li><a href="#education" class="nav__link">Education</a></li>
-        <li><a href="#skills" class="nav__link">Skills</a></li>
-        <li><a href="#experience" class="nav__link">Experience</a></li>
-        <li><a href="#projects" class="nav__link">Projects</a></li>
-        <li><a href="#certifications" class="nav__link">Certifications</a></li>
-        <li><a href="#badges" class="nav__link">Badges</a></li>
-        <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
+        <li><a href="#home" class="nav__link"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about" class="nav__link"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="#education" class="nav__link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="#skills" class="nav__link"><i class="fas fa-code"></i> Skills</a></li>
+        <li><a href="#experience" class="nav__link"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="#projects" class="nav__link"><i class="fas fa-folder-open"></i> Projects</a></li>
+        <li><a href="#certifications" class="nav__link"><i class="fas fa-certificate"></i> Certifications</a></li>
+        <li><a href="#badges" class="nav__link"><i class="fa-solid fa-award"></i> Badges</a></li>
+        <li><a href="#contact" class="nav__link nav__link--cta"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+      <span class="theme-icon-wrapper" aria-hidden="true">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+      </span>
+    </button>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
+    
   </div>
 </header>
 
@@ -80,8 +97,8 @@
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="container hero__grid">
     <div class="hero__content">
-      <p class="hero__hello">Hello, I'm <strong>DHARSINI A.</strong></p>
-      <h1 class="hero__title">Software Engineer</h1>
+      <p class="hero__hello">Hello, I'm <strong>DHARSINI</strong></p>
+      <h1 class="hero__title">Software <br> Engineer</h1>
       <p class="hero__lead">Building reliable applications with Java and modern web technologies, from responsive interfaces to full-stack solutions.</p>
       <ul class="hero__roles" aria-label="Professional roles">
         <li>Software Engineer</li>
@@ -108,8 +125,8 @@
           </div>
         </div>
       </div>
-      <span class="float-chip float-chip--one">Java</span>
-      <span class="float-chip float-chip--two">Full-Stack</span>
+      <!-- <span class="float-chip float-chip--one">Java</span>
+      <span class="float-chip float-chip--two">Full-Stack</span> -->
     </div>
   </div>
 </section>
@@ -1350,7 +1367,6 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <script src="script.js"></script>
 </body>
 </html>
