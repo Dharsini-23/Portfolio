@@ -38,6 +38,45 @@ const imageLinks = {
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- THEME ---------- */
+  const themeToggle = $("#themeToggle");
+  const root = document.documentElement;
+  const themeMeta = $('meta[name="theme-color"]');
+
+  function isDarkTheme() {
+    return root.getAttribute("data-theme") === "dark";
+  }
+
+  function updateThemeControls() {
+    const dark = isDarkTheme();
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-pressed", String(dark));
+      themeToggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      themeToggle.title = dark ? "Switch to light mode" : "Switch to dark mode";
+    }
+    if (themeMeta) themeMeta.setAttribute("content", dark ? "#0a0f1f" : "#f7f9fc");
+  }
+
+  updateThemeControls();
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const dark = !isDarkTheme();
+      root.classList.add("theme-transition");
+      if (dark) {
+        root.setAttribute("data-theme", "dark");
+      } else {
+        root.removeAttribute("data-theme");
+      }
+      try {
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      } catch (error) {
+        console.warn("Unable to save the selected theme.", error);
+      }
+      updateThemeControls();
+      window.setTimeout(() => root.classList.remove("theme-transition"), 350);
+    });
+  }
+
   /* ---------- LOAD IMAGES ---------- */
   function loadImage(containerId, url, altText) {
     const container = $("#" + containerId);
